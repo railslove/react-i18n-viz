@@ -15,9 +15,11 @@ export default class IntlTip extends React.PureComponent {
   }
 
   getPosition = measure => {
+    const defaults = { x: 0, y: 0, height: 0 }
+    const bounds = { ...defaults, ...measure }
     return {
-      top: measure.y + measure.height,
-      left: measure.x
+      top: bounds.y + bounds.height,
+      left: bounds.x
     }
   }
 
