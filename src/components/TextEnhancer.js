@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 import { Portal } from 'react-portal'
 
 import Balloon from './Balloon'
-import IntlInfo from './IntlInfo'
+import InfoContent from './InfoContent'
 
-export default class IntlTip extends React.PureComponent {
+export default class TextEnhancer extends React.Component {
   static propTypes = {
     isVisible: PropTypes.bool,
     children: PropTypes.node,
-    intlDescription: PropTypes.string,
-    intlId: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    id: PropTypes.string.isRequired,
     measure: PropTypes.object.isRequired
   }
 
   getPosition = measure => {
-    const defaults = { x: 0, y: 0, height: 0 }
-    const bounds = { ...defaults, ...measure }
+    const bounds = measure.x ? measure : { x: 0, y: 0, height: 0 }
+
     return {
       top: bounds.y + bounds.height,
       left: bounds.x
@@ -32,9 +32,9 @@ export default class IntlTip extends React.PureComponent {
         {isVisible && (
           <Portal>
             <Balloon style={position}>
-              <IntlInfo
-                id={this.props.intlId}
-                description={this.props.intlDescription}
+              <InfoContent
+                id={this.props.id}
+                description={this.props.description}
               />
             </Balloon>
           </Portal>

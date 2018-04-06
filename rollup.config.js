@@ -1,8 +1,8 @@
+import path from 'path'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
 
 import pkg from './package.json'
 
@@ -12,31 +12,59 @@ const copyright = `/*
  */
 `
 
-export default {
-  input: 'src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      banner: copyright
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      banner: copyright
-    }
-  ],
-  plugins: [
-    peerDepsExternal(),
-    url(),
-    babel({
-      exclude: 'node_modules/**'
-    }),
-    resolve(),
-    commonjs({
-      namedExports: {
-        'node_modules/react-dom/index.js': ['createPortal']
+export default [
+  // Main Package
+  {
+    input: 'src/index.js',
+    output: [
+      {
+        file: pkg.main,
+        format: 'cjs',
+        banner: copyright,
+        exports: 'named'
+      },
+      {
+        file: pkg.module,
+        format: 'es',
+        banner: copyright,
+        exports: 'named'
       }
-    })
-  ]
-}
+    ],
+    plugins: [
+      peerDepsExternal(),
+      babel({
+        exclude: 'node_modules/**'
+      }),
+      resolve(),
+      commonjs()
+    ]
+  },
+
+  // react-intl Integration
+  {
+    input: 'src/plugs/react-intl.js',
+    output: [
+      {
+        file: 'plug/react-intl/index.js',
+        format: 'cjs'
+      },
+      {
+        file: 'plug/react-intl/index.es.js',
+        format: 'es'
+      }
+    ],
+    external: [path.resolve('src/index.js'), 'react-intl', 'react-i18n-viz'],
+    plugins: [
+      peerDepsExternal(),
+      babel({
+        exclude: 'node_modules/**'
+      }),
+      resolve(),
+      commonjs({
+        namedExports: {
+          'node_modules/react-dom/index.js': ['createPortal']
+        }
+      })
+    ]
+  }
+]

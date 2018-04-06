@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class IntlInfo extends React.PureComponent {
+export default class InfoContent extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     description: PropTypes.string

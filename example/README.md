@@ -1,1 +1,1 @@
-# react-intl-viz Example
+# react-i18n-viz Example
