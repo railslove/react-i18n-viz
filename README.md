@@ -35,7 +35,7 @@ Instead of importing `FormattedMessage` and `FormattedHTMLMessage` from react-in
 ```js
 import React from 'react'
 import { IntlProvider } from 'react-intl'
-import { FormattedMessage } from 'react-intl-viz/'
+import { FormattedMessage } from 'react-i18n-viz/lib/react-intl'
 
 export default class MyComponent extends React.Component {
   render() {

@@ -1,14 +1,16 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import {
-  IntlProvider,
-  FormattedMessage as IntlFormattedMessage
-} from 'react-intl'
-import { FormattedMessage } from '../plugs/react-intl'
-import Balloon from '../components/Balloon'
-import InfoContent from '../components/InfoContent'
+import { withI18nViz } from '../src/'
+import Balloon from '../src/components/Balloon'
+import InfoContent from '../src/components/InfoContent'
 
-xdescribe('IntlVizComponent', () => {
+const SomeI18nComponent = props => <div>{props.translations[props.id]}</div>
+const VizI18nComponent = withI18nViz(({ id, description }) => ({
+  id,
+  description
+}))(SomeI18nComponent)
+
+describe('IntlVizComponent', () => {
   let props
   let mountedComponent
   let translations = {
@@ -18,9 +20,11 @@ xdescribe('IntlVizComponent', () => {
   const intlViz = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <IntlProvider locale="en" messages={translations}>
-          <FormattedMessage id="the.phrase" description="The only one" />
-        </IntlProvider>
+        <VizI18nComponent
+          translations={translations}
+          id="the.phrase"
+          description="The only one"
+        />
       )
     }
     return mountedComponent
@@ -34,7 +38,7 @@ xdescribe('IntlVizComponent', () => {
     test('renders translation', () => {
       expect(
         intlViz()
-          .find(IntlFormattedMessage)
+          .find(SomeI18nComponent)
           .text()
       ).toBe('I am Groot')
     })
@@ -63,7 +67,6 @@ xdescribe('IntlVizComponent', () => {
     })
 
     test('renders id in tooltip', () => {
-      console.log(intlViz().find(InfoContent))
       expect(
         intlViz()
           .find(InfoContent)

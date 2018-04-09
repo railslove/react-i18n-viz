@@ -1,7 +1,7 @@
 import React from 'react'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import enLocaleData from 'react-intl/locale-data/en'
-import { FormattedMessage } from 'react-i18n-viz/plug/react-intl'
+import { FormattedMessage } from 'react-i18n-viz/lib/react-intl'
 import translations from './translations.json'
 
 addLocaleData(enLocaleData)

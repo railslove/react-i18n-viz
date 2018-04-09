@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "description": "Visualization of i18n-strings for react",
   "scripts": {
-    "test": "react-scripts test --env=jsdom",
+    "test:dev": "jest --watch --env=jsdom",
+    "test:ci": "jest --env=jsdom",
+    "test": "scripts/test",
     "prepare": "npm run build",
-    "build": "rollup -c",
-    "start": "rollup -c -w",
+    "clean": "rimraf lib",
+    "build": "npm run clean && babel ./src --out-dir ./lib",
+    "start": "npm run clean && babel ./src --watch --out-dir ./lib",
     "lint": "eslint ."
   },
   "author": "Timo Mämecke <timo@railslove.com>",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "files": ["dist"],
+  "main": "lib/index.js",
+  "files": ["lib"],
   "sideEffects": false,
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -22,30 +23,31 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
-    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-jest": "^22.4.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
     "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-intl": "^2.4.0",
-    "react-scripts": "^1.1.1",
-    "rollup": "^0.54.0",
-    "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^8.2.1",
-    "rollup-plugin-node-resolve": "^3.0.2",
-    "rollup-plugin-peer-deps-external": "^2.0.0"
+    "react-intl": "^2.4.0"
   },
   "dependencies": {
     "react-portal": "^4.1.4"
+  },
+  "jest": {
+    "setupFiles": ["<rootDir>/setupTests.js"],
+    "modulePathIgnorePatterns": ["<rootDir>/example/node_modules"]
   }
 }
