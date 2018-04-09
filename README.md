@@ -30,7 +30,7 @@ You can find a working App in [/example](example).
 
 ### with react-intl
 
-Instead of importing `FormattedMessage` and `FormattedHTMLMessage` from react-intl, import them from `react-intl-viz/plug/react-intl`. You can use those components like their react-intl counterparts.
+Instead of importing `FormattedMessage` and `FormattedHTMLMessage` from react-intl, import them from `react-i18n-viz/lib/react-intl`. You can use those components like their react-intl counterparts.
 
 ```js
 import React from 'react'
