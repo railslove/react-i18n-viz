@@ -9,7 +9,6 @@ import I18nVizWrapper from '../src/components/I18nVizWrapper'
 import { FormattedMessage, FormattedHTMLMessage } from '../src/react-intl'
 
 describe('react-intl Integration', () => {
-  let props
   let mountedComponent
   let translations = {
     'the.phrase': 'I am Groot'
