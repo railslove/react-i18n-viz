@@ -1,23 +1,28 @@
 import React from 'react'
-import { IntlProvider, addLocaleData } from 'react-intl'
-import enLocaleData from 'react-intl/locale-data/en'
-import { FormattedMessage } from 'react-i18n-viz/lib/react-intl'
-import translations from './translations.json'
-
-addLocaleData(enLocaleData)
+import ReactIntlExample from './react-intl/ReactIntlExample'
+import ReactI18nextExample from './react-i18next/ReactI18nextExample'
 
 class App extends React.Component {
+  state = {
+    locale: 'en'
+  }
+
+  setLocale = locale => () => {
+    this.setState({ locale })
+  }
+
   render() {
     return (
-      <IntlProvider locale="en" messages={translations.en}>
-        <div className="App">
-          <FormattedMessage
-            id="app.greeting"
-            description="A friendly greeting."
-            values={{ name: 'John' }}
-          />
+      <div>
+        <div>
+          <strong>Switch locales:</strong>
+          <button onClick={this.setLocale('en')}>en</button>
+          <button onClick={this.setLocale('de')}>de</button>
+          <button onClick={this.setLocale('es')}>es</button>
         </div>
-      </IntlProvider>
+        <ReactIntlExample locale={this.state.locale} />
+        <ReactI18nextExample locale={this.state.locale} />
+      </div>
     )
   }
 }

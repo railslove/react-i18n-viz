@@ -1,0 +1,11 @@
+{
+  "en": {
+    "app.greeting": "Hello {name}, how are you today?"
+  },
+  "de": {
+    "app.greeting": "Hallo {name}, wie geht's?"
+  },
+  "es": {
+    "app.greeting": "Hola {name}. ¿Qué tal?"
+  }
+}
