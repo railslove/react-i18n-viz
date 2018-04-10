@@ -13,6 +13,7 @@ This Library provides a [Higher-Order Component](https://reactjs.org/docs/higher
 It also includes support for popular i18n Libraries:
 
 * [react-intl](https://github.com/yahoo/react-intl)
+* [react-i18next](https://github.com/i18next/react-i18next)
 
 Those Components are simply the Components of their Libraries, wrapped with the HOC.
 
@@ -41,7 +42,7 @@ export default class MyComponent extends React.Component {
   render() {
     return (
       <IntlProvider locale="en" messages={/* ... */}>
-        <div className="App">
+        <div>
           <FormattedMessage
             id="app.greeting"
             description="A friendly greeting."
@@ -49,6 +50,32 @@ export default class MyComponent extends React.Component {
           />
         </div>
       </IntlProvider>
+    )
+  }
+}
+```
+
+### with react-i18next
+
+Instead of importing `Trans` from react-i18next, import it from `react-i18n-viz/lib/react-i18next`. You can use it like the `Trans`-Component from react-i18next.
+
+To show a description in the i18n-viz Tolltip, you can provide the `description` prop.
+
+```js
+import React from 'react'
+import { I18nextProvider } from 'react-i18next'
+import { Trans } from 'react-i18n-viz/lib/react-i18next'
+
+export default class MyComponent extends React.Component {
+  render() {
+    return (
+      <I18nextProvider i18n={i18n}>
+        <div>
+          <Trans i18nKey="app_greeting" description="A friendly greeting.">
+            Hello {{ name }}, how are you today?
+          </Trans>
+        </div>
+      </I18nextProvider>
     )
   }
 }

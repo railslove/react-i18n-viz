@@ -17,7 +17,7 @@ export default class ReactI18nextExample extends React.PureComponent {
           <h1>Example with react-i18next</h1>
           <p>
             <Trans i18nKey="app_greeting" description="A friendly greeting.">
-              Hello {{name}}, <div>how are you today?</div>
+              Hello {{name}}, how are you today?
             </Trans>
           </p>
         </div>
