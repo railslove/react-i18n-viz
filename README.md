@@ -6,6 +6,8 @@
   <img src=".github/demo.gif" width="450" height="236" />
 </p>
 
+...or view the [Demo](https://railslove.github.io/react-i18n-viz/).
+
 **In developoment.**
 
 This Library provides a [Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) to wrap around i18n Components. If you hover over such a Component, a Tooltip will be visible with the id and description of the i18n String. This is very useful if you want to check in your Browser which String belongs to which id.
@@ -72,7 +74,7 @@ export default class MyComponent extends React.Component {
       <I18nextProvider i18n={i18n}>
         <div>
           <Trans i18nKey="app_greeting" description="A friendly greeting.">
-            Hello {{ name }}, how are you today?
+            Hello {{ name }}, how are you today
           </Trans>
         </div>
       </I18nextProvider>
