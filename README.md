@@ -5,7 +5,7 @@
 [![Travis](https://img.shields.io/travis/railslove/react-i18n-viz.svg?style=for-the-badge)](https://travis-ci.org/railslove/react-i18n-viz) [![npm](https://img.shields.io/npm/v/react-i18n-viz.svg?style=for-the-badge)](http://npmjs.com/package/react-i18n-viz)
 
 <p align="center">
-  <img src=".github/demo.gif" width="450" height="236" />
+  <img src=".github/demo.gif" width="450" />
 </p>
 
 ...or view the [Demo](https://railslove.github.io/react-i18n-viz/).
